@@ -11,6 +11,8 @@ export const KEYBOARD_SPEED = 0.18;
 export const VELOCITY_LERP = 0.16;
 export const VELOCITY_DECAY = 0.9;
 export const INITIAL_CAMERA_Z = 50;
+export const CANVAS_DIM_LERP = 0.1;
+export const CANVAS_DIM_OPACITY = 0.15;
 
 export type ChunkOffset = {
   dx: number;

@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw source assets (not served; build-portfolio.ts generates public/ from these)
+/portfolio work/
+*.mov
+
+# Local tooling config
+.claude/

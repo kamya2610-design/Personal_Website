@@ -8,12 +8,10 @@
   pointer-events: none;
   justify-items: start;
   align-items: center;
-  grid-template-columns: auto auto auto auto 1fr;
+  grid-template-columns: auto auto auto auto 1fr auto;
   grid-template-areas:
-    "title title credits ..."
-    "back archive github ..."
-    "tags tags tags tags"
-    "sponsor sponsor sponsor sponsor";
+    "gallery film about contact . credits"
+    "title title title title title title";
   color: #fff;
   mix-blend-mode: difference;
   font-family: "DM Sans", sans-serif;
@@ -28,44 +26,146 @@
   mix-blend-mode: difference;
 }
 
-.frame__title {
+.nameWrap {
   grid-area: title;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  justify-self: start;
+  pointer-events: auto;
+}
+
+.hitZone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 380px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 1;
+}
+
+.fanZone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.fanZone[data-active="true"] {
+  pointer-events: auto;
+}
+
+.frame__title {
+  position: relative;
+  z-index: 2;
   font-family: "Asul", serif;
   font-size: 1rem;
   font-weight: 400;
   margin: 0;
   color: #fff;
   mix-blend-mode: difference;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.frame__back {
-  grid-area: back;
-  justify-self: start;
+.frame__titleActive {
+  opacity: 0.45;
+  transform: scale(0.92);
 }
 
-.frame__archive {
-  grid-area: archive;
-  justify-self: start;
+.fan {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
 }
 
-.frame__github {
-  grid-area: github;
+.fan[data-active="true"] {
+  pointer-events: auto;
+}
+
+.connector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.35);
+  transform-origin: top center;
+  transform: rotate(var(--rot)) scaleY(0);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.fan[data-active="true"] .connector {
+  transform: rotate(var(--rot)) scaleY(1);
+  opacity: 1;
+}
+
+.categoryLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0.85);
+  opacity: 0;
+  white-space: nowrap;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.4vw, 2rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  mix-blend-mode: difference;
+  text-decoration: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: auto;
+}
+
+.fan[data-active="true"] .categoryLabel {
+  opacity: 1;
+  transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1);
+}
+
+.frame__gallery {
+  grid-area: gallery;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.frame__gallery:hover {
+  text-decoration: underline;
+}
+
+.frame__film {
+  grid-area: film;
+}
+
+.frame__about {
+  grid-area: about;
+}
+
+.frame__contact {
+  grid-area: contact;
 }
 
 .frame__credits {
   grid-area: credits;
-}
-
-.frame__tags {
-  grid-area: tags;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.frame__tags a {
-  color: #fff;
-  mix-blend-mode: difference;
 }
 
 @media screen and (min-width: 53em) {
@@ -77,23 +177,19 @@
     left: 0;
     width: 100%;
     grid-column-gap: 2rem;
-    grid-template-columns: auto auto auto 1fr;
-    grid-template-rows: auto auto auto;
-    align-content: space-between;
+    grid-template-columns: auto auto auto auto 1fr auto;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
-      "back github archive ... credits"
-      "title title title title title"
-      "tags tags tags tags sponsor";
+      "gallery film about contact . credits"
+      "title title title title title title";
+  }
+
+  .nameWrap {
+    justify-self: center;
   }
 
   .frame__title {
-    justify-self: center;
     font-size: clamp(2rem, 5vw, 3rem);
-  }
-
-  .frame__tags {
-    align-self: end;
-    gap: 2rem;
   }
 
   .frame__credits {

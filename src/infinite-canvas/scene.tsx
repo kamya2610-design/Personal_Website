@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { useIsTouchDevice } from "~/src/use-is-touch-device";
 import { clamp, lerp } from "~/src/utils";
 import {
+  CANVAS_DIM_LERP,
   CHUNK_FADE_MARGIN,
   CHUNK_OFFSETS,
   CHUNK_SIZE,
@@ -18,6 +19,7 @@ import {
   VELOCITY_DECAY,
   VELOCITY_LERP,
 } from "./constants";
+import { canvasDimState } from "./dim-state";
 import styles from "./style.module.css";
 import { getTexture } from "./texture-manager";
 import type { ChunkData, InfiniteCanvasProps, MediaItem, PlaneData } from "./types";
@@ -124,8 +126,9 @@ function MediaPlane({
 
     state.opacity = target < INVIS_THRESHOLD && state.opacity < INVIS_THRESHOLD ? 0 : lerp(state.opacity, target, 0.18);
 
-    const isFullyOpaque = state.opacity > 0.99;
-    material.opacity = isFullyOpaque ? 1 : state.opacity;
+    const dim = canvasDimState.current;
+    const isFullyOpaque = state.opacity > 0.99 && dim > 0.99;
+    material.opacity = (isFullyOpaque ? 1 : state.opacity) * dim;
     material.depthWrite = isFullyOpaque;
     mesh.visible = state.opacity > INVIS_THRESHOLD;
   });
@@ -413,6 +416,8 @@ function SceneController({ media, onTextureProgress }: { media: MediaItem[]; onT
     const s = state.current;
     const now = performance.now();
 
+    canvasDimState.current = lerp(canvasDimState.current, canvasDimState.target, CANVAS_DIM_LERP);
+
     const { forward, backward, left, right, up, down } = getKeys();
     if (forward) s.targetVel.z -= KEYBOARD_SPEED;
     if (backward) s.targetVel.z += KEYBOARD_SPEED;
@@ -520,8 +525,8 @@ export function InfiniteCanvasScene({
   cameraFar = 500,
   fogNear = 120,
   fogFar = 320,
-  backgroundColor = "#ffffff",
-  fogColor = "#ffffff",
+  backgroundColor = "#000000",
+  fogColor = "#000000",
 }: InfiniteCanvasProps) {
   const isTouchDevice = useIsTouchDevice();
   const dpr = Math.min(window.devicePixelRatio || 1, isTouchDevice ? 1.25 : 1.5);

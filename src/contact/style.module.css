@@ -1,0 +1,144 @@
+.page {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  overflow-y: auto;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pageIn 0.5s ease;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.column {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 40em) {
+  .column {
+    padding: 5rem 1.5rem;
+  }
+}
+
+.heading {
+  margin: 0 0 0.75rem;
+  font-family: "Asul", serif;
+  font-weight: 400;
+  font-size: 2.75rem;
+  letter-spacing: 0.03em;
+}
+
+.intro {
+  margin: 0 0 4rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  margin-bottom: 4.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.label {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.input,
+.textarea {
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.6rem 0;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+.textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.submit {
+  align-self: center;
+  background: none;
+  border: none;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.submit:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.socialLink svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.socialLink:hover {
+  opacity: 1;
+}

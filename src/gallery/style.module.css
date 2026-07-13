@@ -1,0 +1,196 @@
+.gallery {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  overflow-y: auto;
+  background: #000;
+  animation: galleryIn 0.5s ease;
+}
+
+@keyframes galleryIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #000;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.back {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.heading {
+  margin: 0;
+  font-family: "Asul", serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.grid {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1.5rem 3rem;
+}
+
+@media screen and (min-width: 40em) {
+  .grid {
+    gap: 1rem;
+    padding: 0 2rem 4rem;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .grid {
+    padding: 0 3rem 4rem;
+  }
+}
+
+.column {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media screen and (min-width: 40em) {
+  .column {
+    gap: 1rem;
+  }
+}
+
+.tile {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  opacity: 0;
+  animation: tileIn 0.6s ease forwards;
+}
+
+@keyframes tileIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--aspect);
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.tile:hover img {
+  opacity: 0.8;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  animation: lightboxIn 0.3s ease;
+}
+
+@keyframes lightboxIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.lightboxImage {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  animation: lightboxImageIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lightboxImageIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightboxClose,
+.lightboxPrev,
+.lightboxNext {
+  position: fixed;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lightboxClose {
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.lightboxPrev,
+.lightboxNext {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  padding: 1rem;
+}
+
+.lightboxPrev {
+  left: 0.5rem;
+}
+
+.lightboxNext {
+  right: 0.5rem;
+}

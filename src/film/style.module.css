@@ -1,0 +1,251 @@
+.filmGallery {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  overflow: hidden;
+  background: #000;
+  animation: filmGalleryIn 0.5s ease;
+}
+
+@keyframes filmGalleryIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.filmGalleryTrack {
+  display: flex;
+  height: 100%;
+  gap: 0.75rem;
+  padding: 1rem;
+  scroll-padding: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (min-width: 40em) {
+  .filmGalleryTrack {
+    gap: 1rem;
+    padding: 1.5rem;
+    scroll-padding: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .filmGalleryTrack {
+    gap: 1.5rem;
+    padding: 2rem;
+    scroll-padding: 2rem;
+  }
+}
+
+.filmCard {
+  position: relative;
+  flex: 0 0 92vw;
+  height: 100%;
+  scroll-snap-align: start;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.filmCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  transition: background 0.3s ease;
+}
+
+.filmCard:hover::before {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.filmCardTitle {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.filmCard:hover .filmCardTitle {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media screen and (min-width: 53em) {
+  .filmCard {
+    flex-basis: 70vw;
+  }
+}
+
+.filmDetail {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  overflow-y: auto;
+  background: #000;
+  color: #fff;
+  animation: filmDetailIn 0.4s ease;
+}
+
+@keyframes filmDetailIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1.5rem;
+}
+
+.close {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.close:hover {
+  text-decoration: underline;
+}
+
+.playerWrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+.detailBody {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 5rem;
+}
+
+.detailTitle {
+  margin: 0 0 1.5rem;
+  font-family: "Asul", serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.detailYear {
+  margin: 0 0 1.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.7rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.detailSynopsis {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.divider {
+  margin: 3rem 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.creditsHeading {
+  margin: 0 0 2.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.creditsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 2rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.creditsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.creditGroup {
+  text-align: center;
+}
+
+.creditRole {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.creditName {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.notFound {
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
