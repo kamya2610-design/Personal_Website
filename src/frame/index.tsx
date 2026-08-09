@@ -7,13 +7,17 @@ import { CATEGORIES } from "./categories";
 import styles from "./style.module.css";
 
 const FAN_RADIUS_MIN = 260;
+const FAN_RADIUS_MIN_MOBILE = 110;
+const FAN_RADIUS_MOBILE_BREAKPOINT = 848; // matches the 53em CSS breakpoint
 const FAN_RADIUS_MAX = 640;
 const FAN_RADIUS_VIEWPORT_RATIO = 0.42;
 const FAN_ZONE_BUFFER = 220;
 const FAN_STAGGER_MS = 35;
 
-const computeFanRadius = (): number =>
-  clamp(Math.min(window.innerWidth, window.innerHeight) * FAN_RADIUS_VIEWPORT_RATIO, FAN_RADIUS_MIN, FAN_RADIUS_MAX);
+const computeFanRadius = (): number => {
+  const min = window.innerWidth < FAN_RADIUS_MOBILE_BREAKPOINT ? FAN_RADIUS_MIN_MOBILE : FAN_RADIUS_MIN;
+  return clamp(Math.min(window.innerWidth, window.innerHeight) * FAN_RADIUS_VIEWPORT_RATIO, min, FAN_RADIUS_MAX);
+};
 
 type FrameProps = {
   showName?: boolean;

@@ -94,9 +94,41 @@
   transform: translate(-50%, 0);
 }
 
+@media (pointer: coarse), screen and (max-width: 53em) {
+  .filmCard::before {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.15) 45%, rgba(0, 0, 0, 0.35) 100%);
+  }
+
+  .filmCardTitle {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    white-space: normal;
+    max-width: calc(100% - 2rem);
+  }
+}
+
 @media screen and (min-width: 53em) {
   .filmCard {
     flex-basis: 70vw;
+  }
+}
+
+@media screen and (max-width: 52.99em) {
+  .filmGalleryTrack {
+    flex-direction: column;
+    align-items: stretch;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+  }
+
+  .filmCard {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    overflow: hidden;
   }
 }
 
@@ -211,6 +243,12 @@
   gap: 2.5rem 2rem;
   max-width: 780px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 30em) {
+  .creditsGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .creditsColumn {
